@@ -7,7 +7,7 @@ File này là bản đồ. Mỗi mục có số (ví dụ **3.2**) để hỏi d
 - ⚠️ **Cần xác minh**: chưa kiểm trên máy lab của Nam, hoặc chưa đọc tới mã OAI. Không dùng như sự thật cho tới khi kiểm.
 - ✅ **Đã có**: PDF ghi đã chạy được ngày 22/11/2026.
 
-> ⚠️ Các file lab (`lab/lab.sh`, `lab/fade.py`, `lab/compose.lab.yaml`, `lab/versions.env`) nằm trên máy lab, chưa có trên GitHub. Bối cảnh dự án đầy đủ ở [CONTEXT.md](../CONTEXT.md).
+> Repo hiện là project trống, chưa chốt cấu trúc. Các lệnh `lab/lab.sh …` và file `lab/…` dưới đây là của lab trong PDF (mã đầy đủ ở PDF §11.3), dùng làm mẫu; tên và vị trí thật sẽ chốt ở **2.0**. Bối cảnh dự án ở [CONTEXT.md](../CONTEXT.md).
 
 ---
 
@@ -125,18 +125,13 @@ Sơ đồ chi tiết (12 khối, nhãn OAI/3GPP): https://claude.ai/artifact/Hy7
 
 Thứ tự bắt buộc: Core → gNB → UE (README OAI mục 2: "Just docker-compose up -d WILL NOT WORK!"). Lệnh lấy từ PDF §7, §11.1.
 
-### 2.0 Đưa file lab lên repo (làm trước tiên)
+### 2.0 Chốt cấu trúc repo (làm trước tiên)
 
-Trên máy lab, trong thư mục dự án:
-```bash
-git pull origin main              # lấy README, CLAUDE.md, CONTEXT.md, file định hướng
-git add lab/lab.sh lab/fade.py lab/compose.lab.yaml lab/versions.env docs/
-git commit -m "Add lab scripts"
-git push
-```
-Nếu `git pull` báo file cục bộ (`CONTEXT.md`, `CLAUDE.md`, `README.md`) sẽ bị ghi đè: đổi tên bản cục bộ, pull, rồi gộp nội dung.
+- Quyết định cấu trúc thư mục (ví dụ theo PDF §3.1: `lab/` cho script dựng lab, `docs/` cho tài liệu; sau thêm thư mục cho tool phân tích).
+- Tạo các script dựng lab theo PDF §4 và §11.3 (`versions.env`, lớp phủ Compose, script điều khiển, script gây suy hao), rồi commit.
+- Đặt `.gitignore` bỏ qua mã OAI clone về và thư mục log.
 
-Xong khi: `lab/` trên GitHub trùng với bản đang chạy trên máy lab.
+Xong khi: cấu trúc đã chốt và các script dựng lab có trong repo.
 
 ### 2.1 Chuẩn bị host (PDF §7.1)
 
@@ -422,7 +417,7 @@ Mỗi mã sự kiện gắn với một pha của sơ đồ Reestablishment (art
 | Bước | Thời gian | Việc | Hoàn thành khi |
 |---|---|---|---|
 | B1 Hiểu mô phỏng | 25–29/11 | Mục 1; trả lời được 1.8 không nhìn tài liệu | Nam tự giải thích được Hình 1, 6, 8 của PDF và 23 câu ở 1.8 |
-| B2 Dựng lại lab | 26–30/11 | 2.0–2.4, chạy lại 3.2 | lab/ trên GitHub khớp máy lab; baseline mới + ≥ 1 ca RLF `SUCCESS`; versions khớp 2026.w47 |
+| B2 Chốt cấu trúc, dựng lab | 26–30/11 | 2.0–2.4, chạy 3.2 | Cấu trúc repo đã chốt, script lab có trong repo; baseline mới + ≥ 1 ca RLF `SUCCESS`; versions khớp 2026.w47 |
 | B3 Thu log đầy đủ | 30/11–04/12 | 4.3, 4.4, thêm `core.log` vào `rlf` | Một run có gnb/ue/core log + 2 pcap; mở pcap thấy NGAP và GTP-U hai lớp IP |
 | B4 Điểm đo + probe | 30/11–06/12 | 4.5, 4.6, build gNB sửa mã | Log có 4 dòng `[MEAS]` mỗi ca; probe có file gửi/nhận. **Hạn cứng 6/12**, trễ thì bỏ `t_drb` |
 | B5 Tool phân tích | 03–10/12 | Mục 5, bước 5.9.1–5.9.6 | 3 run thật → `SUCCESS` với số trùng PDF §8.4; test fixture fallback/T311 qua |
