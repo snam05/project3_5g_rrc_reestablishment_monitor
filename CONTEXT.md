@@ -20,15 +20,17 @@ Toàn bộ bối cảnh dự án tính đến 25/11/2026, để Claude Code (loc
 - Thích sơ đồ **đầy đủ khối và bản tin, có nhãn nguồn** (3GPP / OAI); không thích bản rút gọn.
 - Ưu tiên tài liệu và sơ đồ vẽ sẵn của OAI (`doc/RRC/rrc-dev.md`) trước khi tự suy từ mã.
 
-## 3. Lab hiện có (theo PDF, kiểm chứng 22/11/2026)
+## 3. Lab mô tả trong PDF (tài liệu tham khảo)
+
+Repo hiện là **project trống**: chưa triển khai gì, chưa chốt cấu trúc thư mục. Mục này tóm tắt lab mà PDF mô tả, làm cơ sở để triển khai.
 
 - OAI RAN tag `2026.w47`, commit `75d439de6f4fb37c7e53b21774273f172f18cecb` (mã và image gNB/UE cùng tag). Core OAI CN5G `v2.2.2`, `mysql:9.6`.
-- Máy lab: Ubuntu 26.04 arm64, 4 CPU, Docker 29.10.0, Compose 5.8.0, `OAI_LAB_CPUSET=1-3`.
-- Các file lab nằm **trên máy lab**, chưa có trên GitHub: `lab/versions.env`, `lab/compose.lab.yaml`, `lab/lab.sh`, `lab/fade.py`, `docs/build.sh`, `docs/src/huong-dan.html`, PDF. `lab/upstream/` và `lab/runs/` bị Git bỏ qua.
+- Máy PDF dùng để kiểm chứng: Ubuntu 26.04 arm64, 4 CPU, Docker 29.10.0, Compose 5.8.0, `OAI_LAB_CPUSET=1-3`. Máy lab của Nam: chưa xác định.
+- PDF dùng các file `lab/versions.env`, `lab/compose.lab.yaml`, `lab/lab.sh`, `lab/fade.py` (mã đầy đủ ở phụ lục PDF §11.3). Chưa tạo trong repo; cấu trúc repo sẽ chốt khi triển khai.
 - 7 container: `oai-nr-ue` .71.150, `oai-gnb` .71.140 (monolithic), `oai-amf` .71.132, `oai-smf` .71.133, `oai-upf` .71.134/.72.134, `mysql` .71.131, `oai-ext-dn` 192.168.72.135. UE pool 12.1.1.0/24 (DNN `oai`).
 - Gây RLF: `fade.py` qua telnet 127.0.0.1:9090 trong UE, `channelmod modify 0 ploss 65` trong 2,0 s ảo (đếm bằng `rfsimu vtime`), rồi về 10 dB. Chỉ suy hao downlink.
 
-### Kết quả đã có
+### Kết quả PDF ghi lại (22/11/2026, chưa chạy lại)
 
 | Run (`lab/runs/…`) | RNTI cũ → mới | t_rrc−t_req | t_cfg−t_req | mất ping |
 |---|---|---|---|---|
@@ -39,7 +41,7 @@ Toàn bộ bối cảnh dự án tính đến 25/11/2026, để Claude Code (loc
 
 Cả 3 ca: 65 dB, 2,0 s ảo, RLF qua lỗi random access (không phải T310), không có fallback `RRCSetup` hay `T311 expired`.
 
-## 4. Đánh giá (23/11/2026)
+## 4. Đánh giá lab trong PDF (23/11/2026)
 
 Mạnh: lab chạy lặp lại, phiên bản/image/hash ghim khớp; baseline + 3 ca RLF đủ chuỗi Reestablishment; chỉ số định nghĩa chặt; PDF 35 trang nối log với hàm OAI và 3GPP.
 
@@ -83,14 +85,15 @@ Hướng xử lý: báo số kèm điều kiện lab; ưu tiên thêm ca T311/fa
 
 - Có giữ website trong lịch không, hay demo bằng CLI + timeline?
 - Có cần thêm nhánh "khác cell cùng DU" (cần cấu hình 2 cell) không?
-- Đối chiếu file `lab/` trên máy lab với mô tả trong PDF trước khi đưa lên GitHub.
+- Cấu trúc thư mục của repo (chưa chốt).
+- Máy dùng để chạy lab (cấu hình, hệ điều hành).
 
 ## 9. Tiến độ
 
 Theo [docs/HUONG-DAN-TRIEN-KHAI.md](docs/HUONG-DAN-TRIEN-KHAI.md) mục 6:
 
 - [ ] B1 Hiểu mô phỏng (25–29/11)
-- [ ] B2 Dựng lại lab, baseline, 1 ca RLF (26–30/11)
+- [ ] B2 Chốt cấu trúc repo, dựng lab, baseline, 1 ca RLF (26–30/11)
 - [ ] B3 Thu log đầy đủ: core.log, pcap (30/11–4/12)
 - [ ] B4 Điểm đo `[MEAS]` trong gNB + probe UDP (hạn cứng 6/12)
 - [ ] B5 Tool phân tích log (3–10/12)
