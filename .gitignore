@@ -1,0 +1,6 @@
+# Mã OAI do lab.sh setup clone về (vài trăm MB)
+lab/upstream/
+# Bằng chứng mỗi lượt chạy (log, ping, pcap)
+lab/runs/
+__pycache__/
+*.pyc
