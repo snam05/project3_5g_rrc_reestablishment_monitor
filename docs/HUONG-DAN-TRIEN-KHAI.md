@@ -7,7 +7,7 @@ File này là bản đồ. Mỗi mục có số (ví dụ **3.2**) để hỏi d
 - ⚠️ **Cần xác minh**: chưa kiểm trên máy lab của Nam, hoặc chưa đọc tới mã OAI. Không dùng như sự thật cho tới khi kiểm.
 - ✅ **Đã có**: PDF ghi đã chạy được ngày 22/11/2026.
 
-> ⚠️ Các file `lab/` trong repo được dựng lại từ phụ lục mã nguồn của PDF (§11.3) ngày 25/11/2026, không chép từ máy lab. `CONTEXT.md` và `CLAUDE.md` viết mới theo nội dung PDF. Nếu máy lab có bản gốc khác, bản gốc thắng (xem **2.0**).
+> ⚠️ Các file lab (`lab/lab.sh`, `lab/fade.py`, `lab/compose.lab.yaml`, `lab/versions.env`) nằm trên máy lab, chưa có trên GitHub. Bối cảnh dự án đầy đủ ở [CONTEXT.md](../CONTEXT.md).
 
 ---
 
@@ -125,15 +125,16 @@ Sơ đồ chi tiết (12 khối, nhãn OAI/3GPP): https://claude.ai/artifact/Hy7
 
 Thứ tự bắt buộc: Core → gNB → UE (README OAI mục 2: "Just docker-compose up -d WILL NOT WORK!"). Lệnh lấy từ PDF §7, §11.1.
 
-### 2.0 Đồng bộ repo với máy lab (làm trước tiên)
+### 2.0 Đưa file lab lên repo (làm trước tiên)
 
-Trên máy lab (Ubuntu), trong thư mục dự án cũ:
+Trên máy lab, trong thư mục dự án:
 ```bash
-git remote -v                     # nếu chưa nối với GitHub: git remote add origin <url repo>
-git fetch origin
-git diff origin/main -- lab/      # so file lab của máy với bản trên GitHub
+git pull origin main              # lấy README, CLAUDE.md, CONTEXT.md, file định hướng
+git add lab/lab.sh lab/fade.py lab/compose.lab.yaml lab/versions.env docs/
+git commit -m "Add lab scripts"
+git push
 ```
-Có khác biệt thì giữ bản của máy lab (đã chạy thật) và đẩy lên. Nếu máy lab chưa có repo: `git clone` repo này rồi chạy **2.1**.
+Nếu `git pull` báo file cục bộ (`CONTEXT.md`, `CLAUDE.md`, `README.md`) sẽ bị ghi đè: đổi tên bản cục bộ, pull, rồi gộp nội dung.
 
 Xong khi: `lab/` trên GitHub trùng với bản đang chạy trên máy lab.
 

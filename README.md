@@ -2,9 +2,9 @@
 
 Lab OpenAirInterface 5G SA (RFsimulator) để gây Radio Link Failure có kiểm soát và giám sát thủ tục **RRC Reestablishment** của UE. Đề tài Project 3, hạn bàn giao 21/12/2026.
 
-- Hướng dẫn đầy đủ (35 trang): [docs/huong-dan-lab-oai-reestablishment.pdf](docs/huong-dan-lab-oai-reestablishment.pdf)
+- Hướng dẫn đầy đủ (35 trang): `docs/huong-dan-lab-oai-reestablishment.pdf` (trên máy lab, chưa đưa lên GitHub)
 - Định hướng triển khai từng bước: [docs/HUONG-DAN-TRIEN-KHAI.md](docs/HUONG-DAN-TRIEN-KHAI.md)
-- Trạng thái hiện tại: [CONTEXT.md](CONTEXT.md)
+- Bối cảnh và trạng thái dự án: [CONTEXT.md](CONTEXT.md)
 
 ## Cây thư mục
 
