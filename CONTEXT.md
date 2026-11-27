@@ -25,7 +25,7 @@ Toàn bộ bối cảnh dự án tính đến 25/11/2026, để Claude Code (loc
 Repo hiện là **project trống**: chưa triển khai gì, chưa chốt cấu trúc thư mục. Mục này tóm tắt lab mà PDF mô tả, làm cơ sở để triển khai.
 
 - OAI RAN tag `2026.w47`, commit `75d439de6f4fb37c7e53b21774273f172f18cecb` (mã và image gNB/UE cùng tag). Core OAI CN5G `v2.2.2`, `mysql:9.6`.
-- Máy PDF dùng để kiểm chứng: Ubuntu 26.04 arm64, 4 CPU, Docker 29.10.0, Compose 5.8.0, `OAI_LAB_CPUSET=1-3`. Máy lab của Nam: chưa xác định.
+- Máy PDF dùng để kiểm chứng: Ubuntu 26.04 arm64, 4 CPU, Docker 29.10.0, Compose 5.8.0, `OAI_LAB_CPUSET=1-3`. Máy lab của Nam: chưa xác định; máy Windows x64 (có VirtualBox) đang kết nối với Claude, nên hướng dẫn cài giả định máy ảo Ubuntu amd64 (27/11/2026).
 - PDF dùng các file `lab/versions.env`, `lab/compose.lab.yaml`, `lab/lab.sh`, `lab/fade.py` (mã đầy đủ ở phụ lục PDF §11.3). Chưa tạo trong repo; cấu trúc repo sẽ chốt khi triển khai.
 - 7 container: `oai-nr-ue` .71.150, `oai-gnb` .71.140 (monolithic), `oai-amf` .71.132, `oai-smf` .71.133, `oai-upf` .71.134/.72.134, `mysql` .71.131, `oai-ext-dn` 192.168.72.135. UE pool 12.1.1.0/24 (DNN `oai`).
 - Gây RLF: `fade.py` qua telnet 127.0.0.1:9090 trong UE, `channelmod modify 0 ploss 65` trong 2,0 s ảo (đếm bằng `rfsimu vtime`), rồi về 10 dB. Chỉ suy hao downlink.
@@ -94,6 +94,7 @@ Theo [docs/HUONG-DAN-TRIEN-KHAI.md](docs/HUONG-DAN-TRIEN-KHAI.md) mục 6:
 
 - [ ] B1 Hiểu mô phỏng (25–29/11)
 - [ ] B2 Chốt cấu trúc repo, dựng lab, baseline, 1 ca RLF (26–30/11)
+  - Hướng dẫn từng bước từ clone tới ping: [docs/CAI-DAT-LAB-VA-PING.md](docs/CAI-DAT-LAB-VA-PING.md) (27/11). Cấu trúc `lab/` trong đó vẫn là đề xuất, chờ Nam chốt.
 - [ ] B3 Thu log đầy đủ: core.log, pcap (30/11–4/12)
 - [ ] B4 Điểm đo `[MEAS]` trong gNB + probe UDP (hạn cứng 6/12)
 - [ ] B5 Tool phân tích log (3–10/12)

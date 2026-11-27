@@ -125,6 +125,8 @@ Sơ đồ chi tiết (12 khối, nhãn OAI/3GPP): https://claude.ai/artifact/Hy7
 
 Thứ tự bắt buộc: Core → gNB → UE (README OAI mục 2: "Just docker-compose up -d WILL NOT WORK!"). Lệnh lấy từ PDF §7, §11.1.
 
+Hướng dẫn chi tiết từng lệnh cho 2.0–2.4 (cài Docker, tạo file lab, tới ping): [CAI-DAT-LAB-VA-PING.md](CAI-DAT-LAB-VA-PING.md).
+
 ### 2.0 Chốt cấu trúc repo (làm trước tiên)
 
 - Quyết định cấu trúc thư mục (ví dụ theo PDF §3.1: `lab/` cho script dựng lab, `docs/` cho tài liệu; sau thêm thư mục cho tool phân tích).
