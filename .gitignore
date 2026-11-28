@@ -1,3 +1,4 @@
 lab/upstream/
 lab/runs/
 __pycache__/
+*.pyc
